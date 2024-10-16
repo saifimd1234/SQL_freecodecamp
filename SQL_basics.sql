@@ -35,3 +35,28 @@ WHERE health>50;
 
 -- order of operations: NOT, AND, OR
 -- first solve the brackets
+
+SELECT NOT(true AND NOT false OR false AND (true OR true) AND true) OR (true AND (false AND true));
+-- output- 
+-- NOT(true AND NOT false OR false AND (true OR true) AND true) OR (true AND false)
+-- NOT(true AND NOT false OR false AND true AND true) OR false
+-- NOT(true AND true OR false AND true AND true) OR false
+-- NOT(true AND true OR false AND true) OR false
+-- NOT(true OR false) OR false
+-- NOT true OR false
+-- false OR false
+-- false
+
+SELECT name, level, is_alive, mentor_id, class
+FROM characters
+WHERE (level>20 AND is_alive=true OR mentor_id IS NOT NULL) AND NOT(class IN('Mage', 'Archer'))
+
+-- output -
+-- name=Aragon; level=25; is_alive=true; mentor_id=null; class=Warrior
+-- WHERE (level>20 AND is_alive=true OR mentor_id IS NOT NULL) AND NOT(class IN('Mage', 'Archer'))
+-- (true AND true OR false) AND NOT(false)
+-- (true OR false) AND true
+-- true AND true
+-- true
+
+
