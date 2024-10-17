@@ -138,4 +138,3 @@ FROM characters;
 -- use WINDOWS functions to perform aggregate functions
 SELECT name, level, COUNT(class) OVER(), MIN(class) OVER(), MAX(class) OVER()
 FROM characters;
-
