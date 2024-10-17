@@ -110,4 +110,32 @@ FROM characters
 WHERE is_alive="true"
 ORDER BY level;
 
+-- AGGREGATE FUNCTIONS
+-- it returns only 1 value for the given column
+SELECT COUNT(*) FROM characters; -- total no. of rows
+
+-- count the total numbers of alive characters
+SELECT COUNT(*) FROM characters
+WHERE is_alive="true";
+
+-- PostgreSQL or SQL Server, GoogleSQL uses below syntax
+-- in STRING column
+SELECT COUNT(class), MIN(class), MAX(class), STRING_AGG(class, ',')
+FROM characters;
+-- MySQL uses below syntax
+SELECT 
+    COUNT(class), 
+    MIN(class), 
+    MAX(class), 
+    GROUP_CONCAT(class ORDER BY class SEPARATOR ',') AS concatenated_classes
+FROM characters;
+
+-- below query does not runs bcz name and level gives 15 rows as output but COUNT(class), MIN(class), MAX(class) returns only 1 row, so table cannot be formed
+SELECT 
+    name, level, COUNT(class), MIN(class), MAX(class)
+FROM characters;
+
+-- use WINDOWS functions to perform aggregate functions
+SELECT name, level, COUNT(class) OVER(), MIN(class) OVER(), MAX(class) OVER()
+FROM characters;
 
