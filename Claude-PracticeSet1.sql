@@ -1,3 +1,4 @@
+-- It is present in the 'claude1' database
 -- Create Tables
 CREATE TABLE employees (
     employee_id INT PRIMARY KEY,
